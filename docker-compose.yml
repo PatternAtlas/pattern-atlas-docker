@@ -11,15 +11,17 @@ services:
     networks:
       - default
   pattern-pedia-api:
-    image: patternpedia/patternrepo-api:latest
+    image: patternpedia/patternrepo-api:patternviews
     environment:
-      JDBC_DATABASE_URL: $PUBLIC_HOSTNAME
+      JDBC_DATABASE_URL: db
+      JDBC_DATABASE_USERNAME: postgres
+      JDBC_DATABASE_PASSWORD: postgres
     ports:
       - "8080:8080"
     networks:
       - default
   pattern-pedia-ui:
-    image: patternpedia/patternrepo-ui:latest
+    image: patternpedia/patternrepo-ui:patternviews
     ports:
       - "4200:80"
 networks:
