@@ -1,0 +1,27 @@
+version: '3'
+services:
+  db:
+    image: postgres:10
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - default
+  pattern-pedia-api:
+    image: patternpedia/pattern-repository:pattern-views-api
+    environment:
+      JDBC_DATABASE_URL: $PUBLIC_HOSTNAME
+    ports:
+      - "8080:8080"
+    networks:
+      - default
+  pattern-pedia-ui:
+    image: patternpedia/pattern-repository:pattern-views-ui
+    ports:
+      - "4200:80"
+networks:
+  default:
+    driver: bridge
