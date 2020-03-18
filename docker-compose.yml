@@ -11,7 +11,7 @@ services:
     networks:
       - default
   pattern-pedia-api:
-    image: patternpedia/pattern-repository:pattern-views-api
+    image: patternpedia/patternrepo-api:latest
     environment:
       JDBC_DATABASE_URL: $PUBLIC_HOSTNAME
     ports:
@@ -19,7 +19,7 @@ services:
     networks:
       - default
   pattern-pedia-ui:
-    image: patternpedia/pattern-repository:pattern-views-ui
+    image: patternpedia/patternrepo-ui:latest
     ports:
       - "4200:80"
 networks:
