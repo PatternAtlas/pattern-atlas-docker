@@ -6,7 +6,7 @@
 
 Clone the repository:
 
-```git clone https://github.com/UST-EDMM/getting-started.git```
+```git clone https://github.com/PatternPedia/pattern-pedia-docker.git```
 
 Start the environment:
 
