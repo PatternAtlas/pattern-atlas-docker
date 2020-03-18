@@ -1,4 +1,4 @@
-# Run the Pattern Repository
+# Setup the Pattern Repository
 ### Prerequisites:
 
 * Git
@@ -8,7 +8,7 @@ Clone the repository:
 
 ```git clone https://github.com/PatternPedia/pattern-pedia-docker.git```
 
-Start the environment:
+### Run the Pattern Repository:
 
 ```docker-compose up -d```
 
