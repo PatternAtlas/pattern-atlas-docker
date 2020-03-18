@@ -1,4 +1,4 @@
-# Run the EDMM Modeling Tool
+# Run the Pattern Repository
 ### Prerequisites:
 
 * Git
