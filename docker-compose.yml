@@ -11,7 +11,7 @@ services:
     networks:
       - default
   pattern-pedia-api:
-    image: patternpedia/patternrepo-api:patternviews
+    image: patternpedia/patternrepo-api:latest
     environment:
       JDBC_DATABASE_URL: db
       JDBC_DATABASE_USERNAME: postgres
@@ -21,7 +21,7 @@ services:
     networks:
       - default
   pattern-pedia-ui:
-    image: patternpedia/patternrepo-ui:patternviews
+    image: patternpedia/patternrepo-ui:latest
     ports:
       - "4200:80"
 networks:
