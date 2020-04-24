@@ -1,7 +1,7 @@
-version: '3'
+version: '3.6'
 services:
   db:
-    image: postgres:10
+    image: patternpedia/initialized-pattern-atlas-db:latest
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
@@ -10,8 +10,11 @@ services:
       - "5432:5432"
     networks:
       - default
+    secrets:
+      - source: ssh_secret
+        target: ssh_secret
   pattern-pedia-api:
-    image: patternpedia/patternrepo-api:latest
+    image:  patternpedia/patternrepo-api:latest
     environment:
       JDBC_DATABASE_URL: db
       JDBC_DATABASE_USERNAME: postgres
@@ -20,6 +23,9 @@ services:
       - "8080:8080"
     networks:
       - default
+    depends_on:
+      - db
+    restart: on-failure
   pattern-pedia-ui:
     image: patternpedia/patternrepo-ui:latest
     ports:
@@ -27,3 +33,6 @@ services:
 networks:
   default:
     driver: bridge
+secrets:
+  ssh_secret:
+    file: ./pattern-atlas-content-ssh_secret
