@@ -1,0 +1,14 @@
+# use this file to start the db service with example data
+# provided by the nisq and planqk content repositories
+# make sure the ./planqk-atlas-content-ssh_secret file is present
+# and the data directory of the container is empty
+version: '3.6'
+services:
+  db:
+    secrets:
+      - source: ssh_secret
+        target: ssh_secret
+
+secrets:
+  ssh_secret:
+    file: ./pattern-atlas-content-ssh_secret

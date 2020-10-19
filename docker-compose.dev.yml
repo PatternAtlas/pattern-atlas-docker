@@ -10,12 +10,6 @@ services:
       - "5432:5432"
     networks:
       - default
-    secrets:
-      - source: ssh_secret
-        target: ssh_secret
 networks:
   default:
     driver: bridge
-secrets:
-  ssh_secret:
-    file: ./pattern-atlas-content-ssh_secret
