@@ -16,7 +16,7 @@ Afterwards, the pattern repository is running on http://localhost:4200 and is di
 
 To terminate the system, run the following command:
 
-```docker-compose down```
+```docker-compose down -v```
 
 
 ### Initialize the db on startup
