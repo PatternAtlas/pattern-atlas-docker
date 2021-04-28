@@ -1,7 +1,7 @@
 version: '3.6'
 services:
   db:
-    image: patternpedia/initialized-pattern-atlas-db:latest
+    image: patternpedia/initialized-pattern-atlas-db:update-qc-patterns
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
@@ -10,6 +10,19 @@ services:
       - "5432:5432"
     networks:
       - default
+  config-server:
+    image: quay.io/coreos/etcd:latest
+    environment:
+      ETCD_NAME: config-node1
+      ETCD_CORS: "*"
+      ETCD_ADVERTISE_CLIENT_URLS: "http://config-server:2379"
+      ETCD_LISTEN_CLIENT_URLS: "http://0.0.0.0:2379"
+      ETCDCTL_API: 3
+    ports:
+      - "2379:2379"
+    networks:
+      - default
 networks:
   default:
     driver: bridge
+
