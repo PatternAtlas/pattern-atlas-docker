@@ -16,12 +16,18 @@ services:
       JDBC_DATABASE_URL: db
       JDBC_DATABASE_USERNAME: postgres
       JDBC_DATABASE_PASSWORD: postgres
+      LATEX_RENDERER_HOST_NAME: latex-renderer
+      LATEX_RENDERER_PORT: 8082
+
+      # activate correct application properties
+      SPRING_PROFILES_ACTIVE: docker
     ports:
       - "8080:8080"
     networks:
       - default
     depends_on:
       - db
+#      - latex-renderer
     restart: on-failure
   pattern-pedia-ui:
     image: patternpedia/patternrepo-ui:latest
@@ -51,9 +57,9 @@ services:
       - default
   # used by the pattern atlas to render latex
   latex-renderer:
-    image: planqk/latex-renderer:v1.0.1
+    image: planqk/latex-renderer:v1.1.0
     ports:
-      - "8083:8082"
+      - "8082:8082"
 networks:
   default:
     driver: bridge
