@@ -11,7 +11,7 @@ services:
     networks:
       - default
   pattern-pedia-api:
-    image:  testapi
+    image: patternpedia/patternrepo-api:latest
     environment:
       JDBC_DATABASE_URL: db
       JDBC_DATABASE_USERNAME: postgres
@@ -51,7 +51,7 @@ services:
       - default
   # used by the pattern atlas to render latex
   latex-renderer:
-    image: planqk/latex-renderer:v1.0.1
+    image: planqk/latex-renderer:latest
     ports:
       - "5030:5030"
 networks:
