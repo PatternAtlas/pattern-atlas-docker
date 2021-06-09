@@ -11,13 +11,13 @@ services:
     networks:
       - default
   pattern-pedia-api:
-    image:  patternpedia/patternrepo-api:latest
+    image:  testapi
     environment:
       JDBC_DATABASE_URL: db
       JDBC_DATABASE_USERNAME: postgres
       JDBC_DATABASE_PASSWORD: postgres
     ports:
-      - "8080:8080"
+      - "1977:1977"
     networks:
       - default
     depends_on:
@@ -32,9 +32,9 @@ services:
       # from the container itself we have to specify localhost here
       # and **not** the container name
       PATTERN_ATLAS_API_HOST_NAME: localhost
-      PATTERN_ATLAS_API_PORT: 8080
+      PATTERN_ATLAS_API_PORT: 1977
       LATEX_RENDERER_HOST_NAME: localhost
-      LATEX_RENDERER_PORT: 8082
+      LATEX_RENDERER_PORT: 5030
     ports:
       - "4200:80"
   config-server:
@@ -53,7 +53,7 @@ services:
   latex-renderer:
     image: planqk/latex-renderer:v1.0.1
     ports:
-      - "8083:8082"
+      - "5030:5030"
 networks:
   default:
     driver: bridge
