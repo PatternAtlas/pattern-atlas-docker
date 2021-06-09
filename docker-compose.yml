@@ -1,7 +1,10 @@
 version: '3.6'
 services:
   db:
-    image: IAC2-Project/initialized-pattern-atlas-db:latest
+    build:
+      context: ./
+      dockerfile: ./dockerfiles/initialized-db/Dockerfile
+    image: initialized-pattern-atlas-db:latest
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
