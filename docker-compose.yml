@@ -1,14 +1,12 @@
 version: '3.6'
 services:
   db:
-    build:
-      context: ./
-      dockerfile: ./dockerfiles/initialized-db/Dockerfile
-    image: initialized-pattern-atlas-db:latest
+    image: patternpedia/initialized-pattern-atlas-db:latest
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: postgres
+      PATTERN_ATLAS_CONTENT_REPOSITORY_URL: https://github.com/IAC2-Project/pattern-atlas-content.git
     ports:
       - "5432:5432"
     networks:
