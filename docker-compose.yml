@@ -7,6 +7,8 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: postgres
       PATTERN_ATLAS_CONTENT_REPOSITORY_URL: https://github.com/IAC2-Project/pattern-atlas-content.git
+    volumes:
+      - db-data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
     networks:
@@ -58,3 +60,5 @@ services:
 networks:
   default:
     driver: bridge
+volumes:
+  db-data:
