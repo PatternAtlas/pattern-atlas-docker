@@ -16,12 +16,18 @@ services:
       JDBC_DATABASE_URL: db
       JDBC_DATABASE_USERNAME: postgres
       JDBC_DATABASE_PASSWORD: postgres
+      LATEX_RENDERER_HOST_NAME: latex-renderer
+      LATEX_RENDERER_PORT: 8082
+
+      # activate correct application properties
+      SPRING_PROFILES_ACTIVE: docker
     ports:
       - "1977:1977"
     networks:
       - default
     depends_on:
       - db
+#      - latex-renderer
     restart: on-failure
   pattern-pedia-ui:
     image: patternpedia/patternrepo-ui:latest
