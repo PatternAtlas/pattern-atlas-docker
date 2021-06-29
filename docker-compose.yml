@@ -14,7 +14,7 @@ services:
     networks:
       - default
   pattern-pedia-api:
-    image:  patternpedia/patternrepo-api:latest
+    image:  patternpedia/patternrepo-api:v1.0.5
     environment:
       JDBC_DATABASE_URL: db
       JDBC_DATABASE_USERNAME: postgres
@@ -27,7 +27,7 @@ services:
       - db
     restart: on-failure
   pattern-pedia-ui:
-    image: patternpedia/patternrepo-ui:latest
+    image: patternpedia/patternrepo-ui:v1.0.3
     depends_on:
       - config-server
     environment:
@@ -38,6 +38,9 @@ services:
       PATTERN_ATLAS_API_PORT: 8080
       LATEX_RENDERER_HOST_NAME: localhost
       LATEX_RENDERER_PORT: 8082
+
+      # activate correct application properties
+      SPRING_PROFILES_ACTIVE: docker
     ports:
       - "4200:80"
   config-server:
