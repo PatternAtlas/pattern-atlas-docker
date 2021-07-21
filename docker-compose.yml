@@ -10,8 +10,8 @@ services:
       - "5432:5432"
     networks:
       - default
-  pattern-pedia-api:
-    image: patternpedia/patternrepo-api:latest
+  pattern-atlas-api:
+    image: patternatlas/pattern-atlas-api:latest
     environment:
       JDBC_DATABASE_URL: db
       JDBC_DATABASE_USERNAME: postgres
@@ -27,10 +27,10 @@ services:
       - default
     depends_on:
       - db
-#      - latex-renderer
+      - latex-renderer
     restart: on-failure
-  pattern-pedia-ui:
-    image: patternpedia/patternrepo-ui:latest
+  pattern-atlas-ui:
+    image: patternatlas/pattern-atlas-ui:latest
     depends_on:
       - config-server
     environment:
@@ -42,7 +42,7 @@ services:
       LATEX_RENDERER_HOST_NAME: localhost
       LATEX_RENDERER_PORT: 5030
     ports:
-      - "4200:80"
+      - "1978:80"
   config-server:
     image: quay.io/coreos/etcd:latest
     environment:
