@@ -27,7 +27,7 @@ services:
       - default
     depends_on:
       - db
-#      - latex-renderer
+      - latex-renderer
     restart: on-failure
   pattern-atlas-ui:
     image: patternatlas/pattern-atlas-ui:latest
