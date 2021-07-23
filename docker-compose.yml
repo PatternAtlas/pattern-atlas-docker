@@ -7,7 +7,7 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: postgres
     ports:
-      - "5432:5432"
+      - "5060:5060"
     networks:
       - default
   pattern-atlas-api:
@@ -17,7 +17,7 @@ services:
       JDBC_DATABASE_USERNAME: postgres
       JDBC_DATABASE_PASSWORD: postgres
       LATEX_RENDERER_HOST_NAME: latex-renderer
-      LATEX_RENDERER_PORT: 8082
+      LATEX_RENDERER_PORT: 5030
 
       # activate correct application properties
       SPRING_PROFILES_ACTIVE: docker
