@@ -1,7 +1,7 @@
 version: '3.6'
 services:
   db:
-    image: patternpedia/initialized-pattern-atlas-db:latest
+    image: patternatlas/pattern-atlas-db:latest
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
