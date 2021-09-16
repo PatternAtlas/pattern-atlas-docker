@@ -3,9 +3,10 @@ services:
   db:
     image: patternatlas/pattern-atlas-db:latest
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: postgres
+      POSTGRES_USER: patternatlas
+      POSTGRES_PASSWORD: patternatlas
+      POSTGRES_DB: patternatlas
+      PATTERN_ATLAS_CONTENT_REPOSITORY_BRANCH: master
     ports:
       - "5060:5060"
     networks:
