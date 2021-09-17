@@ -56,6 +56,19 @@ services:
       - "2379:2379"
     networks:
       - default
+  pattern-pedia-auth:
+    build: https://github.com/PatternAtlas/pattern-pedia-auth.git
+    environment:
+      JDBC_DATABASE_URL: db
+      JDBC_DATABASE_USERNAME: postgres
+      JDBC_DATABASE_PASSWORD: postgres
+    ports:
+    - "8081:8081"
+    networks:
+    - default
+    depends_on:
+    - db
+    restart: on-failure
   # used by the pattern atlas to render latex
   latex-renderer:
     image: planqk/latex-renderer:latest
