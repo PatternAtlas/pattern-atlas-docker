@@ -57,8 +57,8 @@ services:
       - "2379:2379"
     networks:
       - default
-  pattern-pedia-auth:
-    build: https://github.com/PatternAtlas/pattern-pedia-auth.git
+  pattern-atlas-auth:
+    build: https://github.com/PatternAtlas/pattern-atlas-auth.git
     environment:
       JDBC_DATABASE_URL: db
       JDBC_DATABASE_NAME: patternatlas
