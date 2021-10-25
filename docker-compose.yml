@@ -15,7 +15,6 @@ services:
     image: patternatlas/pattern-atlas-api:latest
     environment:
       JDBC_DATABASE_URL: db
-      JDBC_DATABASE_NAME: patternatlas
       JDBC_DATABASE_USERNAME: patternatlas
       JDBC_DATABASE_PASSWORD: patternatlas
       LATEX_RENDERER_HOST_NAME: latex-renderer
@@ -58,20 +57,6 @@ services:
       - "2379:2379"
     networks:
       - default
-  pattern-atlas-auth:
-    build: https://github.com/PatternAtlas/pattern-atlas-auth.git
-    environment:
-      JDBC_DATABASE_URL: db
-      JDBC_DATABASE_NAME: patternatlas
-      JDBC_DATABASE_USERNAME: patternatlas
-      JDBC_DATABASE_PASSWORD: patternatlas
-    ports:
-    - "8081:8081"
-    networks:
-    - default
-    depends_on:
-    - db
-    restart: on-failure
   # used by the pattern atlas to render latex
   latex-renderer:
     image: planqk/latex-renderer:latest
