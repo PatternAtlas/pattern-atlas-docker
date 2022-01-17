@@ -1,7 +1,7 @@
 version: '3.6'
 services:
   db:
-    image: patternatlas/pattern-atlas-db:latest
+    image: patternatlas/pattern-atlas-db:v1.1.0
     environment:
       POSTGRES_USER: patternatlas
       POSTGRES_PASSWORD: patternatlas
@@ -13,7 +13,7 @@ services:
     networks:
       - default
   pattern-atlas-api:
-    image: patternatlas/pattern-atlas-api:latest
+    image: patternatlas/pattern-atlas-api:v1.6.1
     environment:
       JDBC_DATABASE_URL: db
       JDBC_DATABASE_USERNAME: patternatlas
@@ -33,7 +33,7 @@ services:
       - latex-renderer
     restart: on-failure
   pattern-atlas-ui:
-    image: patternatlas/pattern-atlas-ui:latest
+    image: patternatlas/pattern-atlas-ui:v1.4.0
     depends_on:
       - config-server
     environment:
@@ -48,7 +48,7 @@ services:
     ports:
       - "1978:80"
   config-server:
-    image: quay.io/coreos/etcd:latest
+    image: quay.io/coreos/etcd:v3.3.8
     environment:
       ETCD_NAME: config-node1
       ETCD_CORS: "*"
@@ -61,7 +61,7 @@ services:
       - default
   # used by the pattern atlas to render latex
   latex-renderer:
-    image: planqk/latex-renderer:latest
+    image: planqk/latex-renderer:v1.1.1
     ports:
       - "5030:5030"
 networks:
