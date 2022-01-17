@@ -7,6 +7,7 @@ services:
       POSTGRES_PASSWORD: patternatlas
       POSTGRES_DB: patternatlas
       PATTERN_ATLAS_CONTENT_REPOSITORY_BRANCH: master
+      READ_ONLY: false
     ports:
       - "5060:5060"
     networks:
@@ -20,7 +21,7 @@ services:
       LATEX_RENDERER_HOST_NAME: latex-renderer
       LATEX_RENDERER_PORT: 5030
       JDBC_DATABASE_NAME: patternatlas
-
+      HAL_EXPLORER: true
       # activate correct application properties
       SPRING_PROFILES_ACTIVE: docker
     ports:
@@ -43,6 +44,7 @@ services:
       PATTERN_ATLAS_API_PORT: 1977
       LATEX_RENDERER_HOST_NAME: localhost
       LATEX_RENDERER_PORT: 5030
+      URL_SCHEME: http
     ports:
       - "1978:80"
   config-server:
