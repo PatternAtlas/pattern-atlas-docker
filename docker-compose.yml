@@ -33,7 +33,7 @@ services:
       - latex-renderer
     restart: on-failure
   pattern-atlas-ui:
-    image: patternatlas/pattern-atlas-ui:v1.4.0
+    image: patternatlas/pattern-atlas-ui:v1.4.1
     depends_on:
       - config-server
     environment:
