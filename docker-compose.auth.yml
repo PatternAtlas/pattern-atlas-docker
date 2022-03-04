@@ -6,7 +6,7 @@ services:
       POSTGRES_USER: patternatlas
       POSTGRES_PASSWORD: patternatlas
       POSTGRES_DB: patternatlas
-      PATTERN_ATLAS_CONTENT_REPOSITORY_BRANCH: master
+      PATTERN_ATLAS_CONTENT_REPOSITORY_BRANCH: add-privileges-and-roles
     ports:
       - "5060:5060"
     networks:
@@ -20,7 +20,6 @@ services:
       JDBC_DATABASE_PASSWORD: patternatlas
       LATEX_RENDERER_HOST_NAME: latex-renderer
       LATEX_RENDERER_PORT: 5030
-      JDBC_DATABASE_NAME: patternatlas
 
       # activate correct application properties
       SPRING_PROFILES_ACTIVE: docker
