@@ -1,26 +1,26 @@
 version: '3.6'
-services:
+services:      
   db:
-    image: patternatlas/pattern-atlas-db:v1.1.0
+    image: postgres:13
     environment:
-      POSTGRES_USER: patternatlas
-      POSTGRES_PASSWORD: patternatlas
-      POSTGRES_DB: patternatlas
-      PATTERN_ATLAS_CONTENT_REPOSITORY_BRANCH: master
-      READ_ONLY: 'false'
+        POSTGRES_USER: patternatlas
+        POSTGRES_PASSWORD: patternatlas
+        POSTGRES_DB: patternatlas
     ports:
-      - "5060:5060"
+        - "5432:5432"
     networks:
-      - default
+        - default
   pattern-atlas-api:
-    image: patternatlas/pattern-atlas-api:v1.6.1
+    image: patternatlas/pattern-atlas-api:v1.7.0
     environment:
       JDBC_DATABASE_URL: db
       JDBC_DATABASE_USERNAME: patternatlas
       JDBC_DATABASE_PASSWORD: patternatlas
+      JDBC_DATABASE_PORT: 5432
       LATEX_RENDERER_HOST_NAME: latex-renderer
       LATEX_RENDERER_PORT: 5030
       JDBC_DATABASE_NAME: patternatlas
+      PATTERN_ATLAS_FETCH_INITIAL_DATA: 'true'
       HAL_EXPLORER: 'true'
       # activate correct application properties
       SPRING_PROFILES_ACTIVE: docker
@@ -33,7 +33,7 @@ services:
       - latex-renderer
     restart: on-failure
   pattern-atlas-ui:
-    image: patternatlas/pattern-atlas-ui:v1.4.1
+    image: patternatlas/pattern-atlas-ui:v1.4.2
     depends_on:
       - config-server
     environment:
