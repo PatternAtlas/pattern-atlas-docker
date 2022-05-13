@@ -11,12 +11,14 @@ services:
     networks:
         - default
   pattern-atlas-api:
-    image: patternatlas/pattern-atlas-api:v1.7.0
+    image: api_ro #patternatlas/pattern-atlas-api:v1.7.0
     environment:
       JDBC_DATABASE_URL: db
       JDBC_DATABASE_USERNAME: patternatlas
       JDBC_DATABASE_PASSWORD: patternatlas
       JDBC_DATABASE_PORT: 5432
+      DB_INIT_USER: patternatlas
+      DB_INIT_PASSWORD: patternatlas
       LATEX_RENDERER_HOST_NAME: latex-renderer
       LATEX_RENDERER_PORT: 5030
       JDBC_DATABASE_NAME: patternatlas
@@ -47,6 +49,16 @@ services:
       URL_SCHEME: http
     ports:
       - "1978:80"
+  auth:
+    image: quay.io/keycloak/keycloak:18.0.0
+    command: start-dev --import-realm
+    volumes:
+      - ./keycloak_import:/opt/keycloak/data/import
+    environment:
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      KEYCLOAK_ADMIN: admin
+    ports:
+      - "8080:8080"
   config-server:
     image: quay.io/coreos/etcd:v3.3.8
     environment:
