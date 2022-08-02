@@ -6,7 +6,7 @@
 
 Clone the repository:
 
-```git clone https://github.com/PatternPedia/pattern-pedia-docker.git```
+```git clone https://github.com/PatternAtlas/pattern-atlas-docker.git```
 
 
 ### Run the pattern repository:
@@ -14,15 +14,13 @@ Clone the repository:
 ```docker-compose up -d```
 
 Starts the individual components of the pattern repository.
- - UI (reachable on http://localhost:80)
+ - UI (reachable on http://localhost:1978)
  - Postgresdb 
- - API server, will populate the Database with initial demo data on first startup
- - Authentication server on http://localhost:8080
+ - API server on http://localhost:1977 (will populate the Database with initial demo data on first startup)
+ - Keycloak authentication server on http://localhost:8080
 
-There are no preconfigured users and the first user created in Keycloak (on http://localhost:8080) that logs in to the 
-Pattern Atlas will be set as the initial admin user.
-
-Keycloak can further be used to create other users and after their first login to Pattern Atlas they can be assigned specific roles.
+Keycloak will be started with a preconfigured realm (named ``Patternatlas``).
+Using the Keycload admin UI (http://localhost:8080/admin/), users for this realm can be created. There are no preconfigured users and the first user that logs in to the Pattern Atlas will be set as the initial admin user. This user can assign roles and privileges for new users using the Admin menu in Pattern Atlas.
 
 To terminate the system, run the following command:
 
