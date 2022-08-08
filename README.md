@@ -20,7 +20,9 @@ Starts the individual components of the pattern repository.
  - Keycloak authentication server on http://localhost:8080
 
 Keycloak will be started with a preconfigured realm (named ``Patternatlas``).
-Using the Keycload admin UI (http://localhost:8080/admin/), users for this realm can be created. There are no preconfigured users and the first user that logs in to the Pattern Atlas will be set as the initial admin user. This user can assign roles and privileges for new users using the Admin menu in Pattern Atlas.
+Using the Keycload admin UI (http://localhost:8080/admin/), users for this realm can be created. 
+There are no preconfigured users and the first user that logs in to the Pattern Atlas will be set as the initial admin user. 
+This user can assign roles and privileges for new users using the Admin menu in Pattern Atlas.
 
 To terminate the system, run the following command:
 
