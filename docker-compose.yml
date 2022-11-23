@@ -11,7 +11,7 @@ services:
     networks:
         - default
   pattern-atlas-api:
-    image: patternatlas/pattern-atlas-api:v1.8.0
+    image: patternatlas/pattern-atlas-api:v1.8.2
     environment:
       JDBC_DATABASE_URL: db
       JDBC_DATABASE_USERNAME: patternatlas
@@ -23,10 +23,11 @@ services:
       LATEX_RENDERER_PORT: 5030
       JDBC_DATABASE_NAME: patternatlas
       PATTERN_ATLAS_FETCH_INITIAL_DATA: 'true'
-      HAL_EXPLORER: 'true'
+      HAL_EXPLORER: 'false'
       # activate correct application properties
       SPRING_PROFILES_ACTIVE: docker
       JWK_URI: http://auth:8080/realms/patternatlas/protocol/openid-connect/certs
+      SECURITY_LOGLEVEL: info
     ports:
       - "1977:1977"
     networks:
@@ -36,7 +37,7 @@ services:
       - latex-renderer
     restart: on-failure
   pattern-atlas-ui:
-    image: patternatlas/pattern-atlas-ui:v1.5.0
+    image: patternatlas/pattern-atlas-ui:v1.5.3
     depends_on:
       - config-server
     environment:
