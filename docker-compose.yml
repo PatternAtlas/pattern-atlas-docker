@@ -7,16 +7,16 @@ services:
         POSTGRES_PASSWORD: patternatlas
         POSTGRES_DB: patternatlas
     ports:
-        - "5432:5432"
+        - "5060:5432"
     networks:
         - default
   pattern-atlas-api:
-    image: patternatlas/pattern-atlas-api:v1.8.2
+    image: patternatlas/pattern-atlas-api:v1.8.3
     environment:
       JDBC_DATABASE_URL: db
       JDBC_DATABASE_USERNAME: patternatlas
       JDBC_DATABASE_PASSWORD: patternatlas
-      JDBC_DATABASE_PORT: 5432
+      JDBC_DATABASE_PORT: 5060
       DB_INIT_USER: patternatlas
       DB_INIT_PASSWORD: patternatlas
       LATEX_RENDERER_HOST_NAME: latex-renderer
@@ -37,7 +37,7 @@ services:
       - latex-renderer
     restart: on-failure
   pattern-atlas-ui:
-    image: patternatlas/pattern-atlas-ui:v1.5.3
+    image: patternatlas/pattern-atlas-ui:v1.5.4
     depends_on:
       - config-server
     environment:
