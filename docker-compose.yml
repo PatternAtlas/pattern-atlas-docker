@@ -1,15 +1,15 @@
 version: '3.6'
 services:      
   db:
-    image: postgres:13
+    image: postgres:15
     environment:
         POSTGRES_USER: patternatlas
         POSTGRES_PASSWORD: patternatlas
         POSTGRES_DB: patternatlas
     ports:
-        - "5432:5432"
+        - "5060:5432"
     networks:
-        - default
+      - default
   pattern-atlas-api:
     image: patternatlas/pattern-atlas-api:v1.8.2
     environment:
