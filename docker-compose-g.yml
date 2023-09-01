@@ -11,9 +11,7 @@ services:
     networks:
       - default
   pattern-atlas-api:
-    image: ghcr.io/philwun/pattern-atlas-api:master
-    platform: linux/arm64
-    #image: patternatlas/pattern-atlas-api:v1.8.3
+    image: patternatlas/pattern-atlas-api:v1.8.3
     environment:
       JDBC_DATABASE_URL: db
       JDBC_DATABASE_USERNAME: patternatlas
@@ -40,8 +38,7 @@ services:
       - latex-renderer
     restart: on-failure
   pattern-atlas-ui:
-    #image: patternatlas/pattern-atlas-ui:latest
-    image: patternatlas/ma-extension:v0.1
+    image: patternatlas/pattern-atlas-ui:latest
     depends_on:
       - config-server
     environment:
