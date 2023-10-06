@@ -11,9 +11,7 @@ services:
     networks:
       - default
   pattern-atlas-api:
-    image: ghcr.io/philwun/pattern-atlas-api:master
-    platform: linux/arm64
-    #image: patternatlas/pattern-atlas-api:v1.8.3
+    image: patternatlas/pattern-atlas-api:v1.8.4
     environment:
       JDBC_DATABASE_URL: db
       JDBC_DATABASE_USERNAME: patternatlas
@@ -40,8 +38,7 @@ services:
       - latex-renderer
     restart: on-failure
   pattern-atlas-ui:
-    #image: patternatlas/pattern-atlas-ui:latest
-    image: patternatlas/ma-extension:v0.1
+    image: patternatlas/pattern-atlas-ui:v1.5.6
     depends_on:
       - config-server
     environment:
@@ -71,7 +68,7 @@ services:
     networks:
       - default
   config-server:
-    image: quay.io/coreos/etcd:v3.3.8
+    image: quay.io/coreos/etcd:v3.5.9
     environment:
       ETCD_NAME: config-node1
       ETCD_CORS: "*"
