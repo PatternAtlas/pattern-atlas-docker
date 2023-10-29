@@ -1,0 +1,81 @@
+version: '3.6'
+services:
+  db:
+    image: patternatlas/pattern-atlas-db:latest
+    environment:
+      POSTGRES_USER: patternatlas
+      POSTGRES_PASSWORD: patternatlas
+      POSTGRES_DB: patternatlas
+      PATTERN_ATLAS_CONTENT_REPOSITORY_BRANCH: add-privileges-and-roles
+    ports:
+      - "5060:5060"
+    networks:
+      - default
+  pattern-atlas-api:
+    image: patternatlas/pattern-atlas-api:latest
+    environment:
+      JDBC_DATABASE_URL: db
+      JDBC_DATABASE_NAME: patternatlas
+      JDBC_DATABASE_USERNAME: patternatlas
+      JDBC_DATABASE_PASSWORD: patternatlas
+      LATEX_RENDERER_HOST_NAME: latex-renderer
+      LATEX_RENDERER_PORT: 5030
+
+      # activate correct application properties
+      SPRING_PROFILES_ACTIVE: docker
+    ports:
+      - "1977:1977"
+    networks:
+      - default
+    depends_on:
+      - db
+      - latex-renderer
+    restart: on-failure
+  pattern-atlas-ui:
+    image: patternatlas/pattern-atlas-ui:latest
+    depends_on:
+      - config-server
+    environment:
+      # because the requests are performed from the browser and not
+      # from the container itself we have to specify localhost here
+      # and **not** the container name
+      PATTERN_ATLAS_API_HOST_NAME: localhost
+      PATTERN_ATLAS_API_PORT: 1977
+      LATEX_RENDERER_HOST_NAME: localhost
+      LATEX_RENDERER_PORT: 5030
+    ports:
+      - "1978:80"
+  config-server:
+    image: quay.io/coreos/etcd:latest
+    environment:
+      ETCD_NAME: config-node1
+      ETCD_CORS: "*"
+      ETCD_ADVERTISE_CLIENT_URLS: "http://config-server:2379"
+      ETCD_LISTEN_CLIENT_URLS: "http://0.0.0.0:2379"
+      ETCDCTL_API: 3
+    ports:
+      - "2379:2379"
+    networks:
+      - default
+  pattern-atlas-auth:
+    build: https://github.com/PatternAtlas/pattern-atlas-auth.git
+    environment:
+      JDBC_DATABASE_URL: db
+      JDBC_DATABASE_NAME: patternatlas
+      JDBC_DATABASE_USERNAME: patternatlas
+      JDBC_DATABASE_PASSWORD: patternatlas
+    ports:
+    - "8081:8081"
+    networks:
+    - default
+    depends_on:
+    - db
+    restart: on-failure
+  # used by the pattern atlas to render latex
+  latex-renderer:
+    image: planqk/latex-renderer:latest
+    ports:
+      - "5030:5030"
+networks:
+  default:
+    driver: bridge
